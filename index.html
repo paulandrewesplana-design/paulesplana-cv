@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paul Andrew Esplana — National Casino Marketing Manager</title>
+  <meta name="description" content="Paul Andrew Esplana — Casino Marketing and Player Development Executive with 20+ years building VIP relationships and driving real revenue. Las Vegas, NV." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       CINEMATIC ENTRY GATE
+       const ACCESS_CODE = 'VIP28';
+  ══════════════════════════════════════════════════════════════════ -->
+  <div id="entry-gate" class="entry-gate" role="dialog" aria-modal="true" aria-label="Portfolio access">
+
+    <!-- PHASE 1: Cinematic full-screen photo with zoom -->
+    <div class="gate-phase gate-phase-photo" id="gate-phase-photo">
+      <img
+        src="gate-cinematic.jpg"
+        alt="Paul Andrew Esplana — VIP Casino Marketing"
+        class="gate-photo"
+        id="gate-photo"
+      />
+      <!-- Gradient darkening layers -->
+      <div class="gate-photo-vignette"></div>
+      <!-- Cinematic brand mark -->
+      <div class="gate-brand-mark">
+        <span class="gate-initials">PAE</span>
+        <span class="gate-brand-title">Paul Andrew Esplana</span>
+        <span class="gate-brand-role">National Casino Marketing Manager</span>
+      </div>
+      <!-- Letterbox bars -->
+      <div class="gate-letterbox gate-letterbox-top"></div>
+      <div class="gate-letterbox gate-letterbox-bottom"></div>
+    </div>
+
+    <!-- PHASE 2: Access code authentication -->
+    <div class="gate-phase gate-phase-auth" id="gate-phase-auth">
+      <!-- Ambient gold orb -->
+      <div class="auth-orb"></div>
+
+      <div class="auth-box" id="auth-box">
+        <!-- Logo -->
+        <div class="auth-logo-wrap">
+          <span class="auth-logo-initials">PAE</span>
+        </div>
+
+        <div class="auth-header">
+          <h2 class="auth-name">Paul Andrew Esplana</h2>
+          <p class="auth-subtitle">Private Portfolio</p>
+          <div class="auth-divider"></div>
+        </div>
+
+        <div class="auth-form">
+          <label class="auth-label" for="access-code-input">Enter Access Code</label>
+          <div class="auth-input-wrap">
+            <input
+              type="password"
+              id="access-code-input"
+              class="auth-input"
+              placeholder="••••••••"
+              maxlength="20"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+          <button class="auth-btn" id="auth-enter-btn" type="button">
+            <span class="auth-btn-text">Enter</span>
+            <span class="auth-btn-arrow">→</span>
+          </button>
+          <p class="auth-error" id="auth-error" aria-live="polite">Incorrect access code. Try again.</p>
+        </div>
+
+        <p class="auth-footer-note">For access inquiries: paulandrew.esplana@gmail.com</p>
+      </div>
+    </div>
+
+  </div><!-- /#entry-gate -->
+
+  <!-- ═══════════════════════════════════ NAV ═══════════════════════════════════ -->
+  <nav id="navbar" class="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-initials">PAE</span>
+      </a>
+      <!-- Desktop nav links (hidden on mobile via CSS) -->
+      <ul class="nav-links">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#expertise" class="nav-link">Expertise</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#achievements" class="nav-link">Achievements</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Connect</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════ MOBILE MENU OVERLAY ═══════════════════════════════════ -->
+  <div id="mobile-overlay" class="mobile-overlay" role="dialog" aria-label="Mobile navigation">
+    <div class="mobile-menu-panel">
+      <button id="mobile-close" class="mobile-close" aria-label="Close menu">✕</button>
+      <div class="mobile-logo">
+        <span class="logo-initials">PAE</span>
+        <span class="mobile-logo-name">Paul Andrew Esplana</span>
+      </div>
+      <nav class="mobile-nav">
+        <a href="#about"         class="mobile-nav-link">About</a>
+        <a href="#expertise"     class="mobile-nav-link">Expertise</a>
+        <a href="#experience"    class="mobile-nav-link">Experience</a>
+        <a href="#achievements"  class="mobile-nav-link">Achievements</a>
+        <a href="#contact"       class="mobile-nav-link">Contact</a>
+      </nav>
+      <a href="#contact" class="btn btn-primary mobile-nav-link" style="margin-top:1rem;">Connect with Paul</a>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════ HERO (CINEMATIC) ══════════════════════════════════ -->
+  <section id="hero" class="hero">
+
+    <!-- Full-bleed background photo -->
+    <div class="hero-photo-wrap">
+      <img
+        src="paul-photo.jpg"
+        alt="Paul Andrew Esplana — National Casino Marketing Manager"
+        class="hero-photo"
+        id="hero-photo"
+      />
+      <!-- Cinematic gradient: dark from bottom for text, dark from top for nav -->
+      <div class="hero-cinematic-gradient"></div>
+    </div>
+
+    <!-- Film grain texture overlay -->
+    <div class="film-grain" aria-hidden="true"></div>
+
+    <!-- Thin gold letterbox bars (top & bottom edge accent) -->
+    <div class="letterbox-bar letterbox-top" aria-hidden="true"></div>
+    <div class="letterbox-bar letterbox-bottom" aria-hidden="true"></div>
+
+    <!-- Text — positioned at bottom-left like a movie title card -->
+    <div class="hero-cinematic-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-text">National Casino Marketing Manager &amp; Player Development Executive</span>
+      </div>
+
+      <h1 class="hero-headline">
+        <span class="headline-line" data-line="1">Relationships.</span>
+        <span class="headline-line" data-line="2">Revenue.</span>
+        <span class="headline-line gold" data-line="3">Results.</span>
+      </h1>
+
+      <p class="hero-sub">
+        20+ years earning trust and turning it into measurable outcomes.<br/>
+        From Caesars Entertainment to PENN Entertainment — building the relationships that drive real revenue.
+      </p>
+
+      <div class="hero-tags">
+        <span class="tag">Independent Agent Networks</span>
+        <span class="tag">VIP Player Development</span>
+        <span class="tag">Event-Driven Revenue</span>
+        <span class="tag">Las Vegas, NV</span>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Connect with Paul</a>
+        <a href="#experience" class="btn btn-ghost">View Career</a>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-bar"></div>
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════ STATS ═══════════════════════════════════ -->
+  <section id="stats" class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card" data-count="20" data-suffix="+">
+          <div class="stat-number"><span class="count-up">0</span><span class="stat-suffix">+</span></div>
+          <div class="stat-label">Years Experience</div>
+          <div class="stat-sub">Casino Marketing, Hospitality &amp; Business Development</div>
+        </div>
+        <div class="stat-card" data-count="12" data-suffix="+">
+          <div class="stat-number"><span class="count-up">0</span><span class="stat-suffix">+</span></div>
+          <div class="stat-label">Years at Caesars</div>
+          <div class="stat-sub">National Casino Marketing Executive</div>
+        </div>
+        <div class="stat-card featured" data-count="38" data-suffix="">
+          <div class="stat-number"><span class="count-up">0</span><span class="stat-suffix"></span></div>
+          <div class="stat-label">Agents Onboarded</div>
+          <div class="stat-sub">Into M Resort network within the first year</div>
+        </div>
+        <div class="stat-card" data-count="95" data-suffix="%">
+          <div class="stat-number"><span class="count-up">0</span><span class="stat-suffix">%</span></div>
+          <div class="stat-label">Client Retention Rate</div>
+          <div class="stat-sub">Sustained over 12 years — elite in a high-churn industry</div>
+        </div>
+        <div class="stat-card" data-count="100" data-suffix="s">
+          <div class="stat-number"><span class="count-up">0</span><span class="stat-suffix">s</span></div>
+          <div class="stat-label">Partnerships Built</div>
+          <div class="stat-sub">With independent agents and player representatives nationwide</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ ABOUT ═══════════════════════════════════ -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-left reveal-left">
+          <div class="section-label">About</div>
+          <h2 class="section-title">I Build Relationships<br/>That Drive Business.</h2>
+          <p class="about-body">
+            Casino marketing and player development executive with 20+ years building the relationships that drive real revenue. From Caesars Entertainment to PENN Entertainment's M Resort Spa Casino, my career has been built on one thing — <strong>earning trust and turning it into results.</strong>
+          </p>
+          <p class="about-body">
+            I grow independent agent networks, develop VIP players, design event-driven revenue strategies, and create the kind of experiences that keep high-value clients coming back. I've managed patron credit lines from five figures to seven figures, onboarded 38 agents in under a year, and maintained a 95% client retention rate over 12 years.
+          </p>
+          <p class="about-body about-closer">
+            That doesn't happen through systems alone. <em>It happens through people.</em>
+          </p>
+          <div class="signature">Paul Andrew Esplana</div>
+          <div class="about-meta">
+            <div class="meta-item">
+              <span class="meta-icon">📍</span>
+              <span>Las Vegas, NV</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-icon">📧</span>
+              <a href="mailto:paulandrew.esplana@gmail.com">paulandrew.esplana@gmail.com</a>
+            </div>
+            <div class="meta-item">
+              <span class="meta-icon">📞</span>
+              <a href="tel:7026019399">702-601-9399</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-right reveal-right">
+          <div class="about-pillars">
+            <div class="pillar-card">
+              <div class="pillar-icon">♟</div>
+              <h3>Strategic Mindset</h3>
+              <p>Identify opportunities others overlook and transform them into profitable business relationships, partnerships, and revenue-generating initiatives.</p>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-icon">📈</div>
+              <h3>Revenue Driven</h3>
+              <p>Focused on measurable outcomes through player development, event marketing, customer acquisition, retention strategies, and long-term business growth.</p>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-icon">🤝</div>
+              <h3>Partnership Builder</h3>
+              <p>Built and managed relationships with hundreds of independent agents, VIP clients, and business partners throughout North America.</p>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-icon">🔭</div>
+              <h3>Future Focused</h3>
+              <p>Combining hospitality expertise with modern business systems to create scalable growth opportunities and long-term value.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ EXPERTISE ═══════════════════════════════════ -->
+  <section id="expertise" class="expertise-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-label">Core Competencies</div>
+        <h2 class="section-title">Areas of Expertise</h2>
+        <p class="section-desc">Two decades of specialized knowledge across the full spectrum of casino marketing and VIP player development.</p>
+      </div>
+
+      <div class="expertise-grid">
+        <div class="expertise-card reveal-up" style="--delay:0.05s">
+          <div class="expertise-number">01</div>
+          <h3>Independent Agent Network Growth</h3>
+          <p>Building and scaling networks of independent agents — from recruitment through long-term partnership management and revenue optimization.</p>
+        </div>
+        <div class="expertise-card reveal-up" style="--delay:0.10s">
+          <div class="expertise-number">02</div>
+          <h3>VIP Player Acquisition &amp; Retention</h3>
+          <p>Developing high-value player relationships through personalized service, tailored offers, and white-glove hospitality experiences.</p>
+        </div>
+        <div class="expertise-card reveal-up" style="--delay:0.15s">
+          <div class="expertise-number">03</div>
+          <h3>Event-Driven Revenue Strategy</h3>
+          <p>Designing signature events — golf tournaments, VVIP experiences, and large-scale casino events — tied directly to theoretical thresholds and P&L goals.</p>
+        </div>
+        <div class="expertise-card reveal-up" style="--delay:0.20s">
+          <div class="expertise-number">04</div>
+          <h3>Offer &amp; Comp Architecture</h3>
+          <p>Building personalized offer packages including airfare, comp strategies, suite assignments, and long-term player value plays.</p>
+        </div>
+        <div class="expertise-card reveal-up" style="--delay:0.25s">
+          <div class="expertise-number">05</div>
+          <h3>Patron Credit Management</h3>
+          <p>Authorized to manage and increase patron credit lines from five figures to seven figures — trusted at the highest level of casino operations.</p>
+        </div>
+        <div class="expertise-card reveal-up" style="--delay:0.30s">
+          <div class="expertise-number">06</div>
+          <h3>CRM &amp; Database Marketing</h3>
+          <p>Developing campaign playbooks tracking theo win, F&B capture, ADR, reinvestment ratios, and player lifetime value.</p>
+        </div>
+        <div class="expertise-card reveal-up" style="--delay:0.35s">
+          <div class="expertise-number">07</div>
+          <h3>Loyalty Program Architecture</h3>
+          <p>Designing and executing loyalty frameworks that incentivize repeat visits, higher spend, and long-term brand affinity.</p>
+        </div>
+        <div class="expertise-card reveal-up" style="--delay:0.40s">
+          <div class="expertise-number">08</div>
+          <h3>White-Glove Hospitality</h3>
+          <p>Owning every touchpoint of VVIP and celebrity guest experiences — protecting loyalty and driving return visits through flawless execution.</p>
+        </div>
+        <div class="expertise-card reveal-up" style="--delay:0.45s">
+          <div class="expertise-number">09</div>
+          <h3>P&L Alignment &amp; Reinvestment</h3>
+          <p>Designing revenue strategies that consistently deliver P&L-positive outcomes aligned with property reinvestment goals and profitability targets.</p>
+        </div>
+        <div class="expertise-card reveal-up" style="--delay:0.50s">
+          <div class="expertise-number">10</div>
+          <h3>Cross-Functional Team Leadership</h3>
+          <p>Serving as the central liaison between high-value clients and all casino departments — ensuring seamless, unified guest experiences.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ EXPERIENCE ═══════════════════════════════════ -->
+  <section id="experience" class="experience-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-label">Career History</div>
+        <h2 class="section-title">Professional Experience</h2>
+        <p class="section-desc">A career defined by building the relationships that deliver measurable, lasting results.</p>
+      </div>
+
+      <div class="timeline">
+
+        <!-- PENN -->
+        <div class="timeline-item current reveal-up">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-line"></div>
+          </div>
+          <div class="timeline-card">
+            <div class="tl-header">
+              <div class="tl-meta">
+                <span class="tl-date">Sep 2025 – Present</span>
+                <span class="tl-badge current-badge">Current Role</span>
+              </div>
+              <h3 class="tl-title">National Casino Marketing Manager</h3>
+              <div class="tl-company">PENN Entertainment — M Resort Spa Casino | Las Vegas, NV</div>
+            </div>
+            <ul class="tl-bullets">
+              <li>Onboarded <strong>38 independent agents in under 12 months</strong> — among the fastest network expansions in property history</li>
+              <li>Reactivated dormant agent partnerships, driving measurable incremental trip volume and revenue recovery</li>
+              <li>Designed event packages including high-profile golf tournaments tied to theoretical thresholds and P&L-aligned reinvestment goals</li>
+              <li>Built personalized offer packages including airfare, comp strategies, and long-term player value plays with hosts and agents</li>
+              <li>Developed CRM-driven campaign playbooks tracking theo win, F&B capture, ADR, reinvestment, and player lifetime value</li>
+              <li>Positioned M Resort as the <strong>premier relationship-driven PENN property</strong> in the independent agent community</li>
+            </ul>
+            <div class="tl-kpis">
+          <!-- Caesars -->
+        <div class="timeline-item reveal-up">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-line"></div>
+          </div>
+          <div class="timeline-card">
+            <div class="tl-header">
+              <div class="tl-meta">
+                <span class="tl-date">Feb 2012 – Apr 2024</span>
+                <span class="tl-badge tenure-badge">12 Years</span>
+              </div>
+              <h3 class="tl-title">National Casino Marketing Executive</h3>
+              <div class="tl-company">Caesars Entertainment Corporation | Las Vegas, NV</div>
+            </div>
+            <ul class="tl-bullets">
+              <li>Managed <strong>hundreds of independent agents</strong> across key feeder markets including Los Angeles, Dallas, and Miami</li>
+              <li>Authorized to manage and increase patron credit lines from <strong>five figures to seven figures</strong> — trusted at the highest level</li>
+              <li>Hosted VVIP guests and celebrities, owning every touchpoint of their experience to protect loyalty and drive return visits</li>
+              <li>Designed large-scale events and personalized offer packages consistently delivering P&amp;L-positive outcomes</li>
+              <li>Served as the central liaison between high-value clients and all casino departments</li>
+              <li>Traveled regularly to meet clients and represent Caesars at the highest level of the independent agent community</li>
+            </ul>
+            <div class="tl-kpis">
+              <div class="kpi"><span class="kpi-val">95%</span><span class="kpi-desc">Client retention over 12 years</span></div>
+              <div class="kpi"><span class="kpi-val">90%</span><span class="kpi-desc">Customer satisfaction sustained</span></div>
+              <div class="kpi"><span class="kpi-val">75%</span><span class="kpi-desc">YoY increase in repeat business</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rio VIP -->
+        <div class="timeline-item reveal-up">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-line"></div>
+          </div>
+          <div class="timeline-card">
+            <div class="tl-header">
+              <div class="tl-meta">
+                <span class="tl-date">Jan 2006 – Feb 2012</span>
+              </div>
+              <h3 class="tl-title">VIP Representative &amp; Palazzo Concierge Manager</h3>
+              <div class="tl-company">Rio All Suites Hotel &amp; Casino — Caesars Entertainment | Las Vegas, NV</div>
+            </div>
+            <ul class="tl-bullets">
+              <li>Built and sustained strong VIP guest relationships with discretion, urgency, and genuine care</li>
+              <li>Trained and mentored VIP agent staff on consistent, personalized guest experience delivery</li>
+              <li>Assisted executive casino hosts with on-property and off-property events and suite-level hospitality</li>
+              <li>Increased <strong>VIP guest satisfaction scores by 30%</strong> through signature service delivery standards</li>
+              <li>Resolved 95%+ of guest issues on first contact — protecting loyalty at a critical touchpoint</li>
+            </ul>
+            <div class="tl-kpis">
+              <div class="kpi"><span class="kpi-val">+30%</span><span class="kpi-desc">VIP satisfaction improvement</span></div>
+              <div class="kpi"><span class="kpi-val">95%+</span><span class="kpi-desc">First-contact resolution</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rio Hotel Ops -->
+        <div class="timeline-item reveal-up">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-line"></div>
+          </div>
+          <div class="timeline-card">
+            <div class="tl-header">
+              <div class="tl-meta">
+                <span class="tl-date">Jan 2011 – Feb 2012</span>
+              </div>
+              <h3 class="tl-title">Hotel Operations Supervisor</h3>
+              <div class="tl-company">Rio All Suites Hotel &amp; Casino — Caesars Entertainment | Las Vegas, NV</div>
+            </div>
+            <ul class="tl-bullets">
+              <li>Supervised <strong>40–50 employees</strong> across front desk and guest services</li>
+              <li>Oversaw 2,500-room daily operations including room inventory, suite assignments, and upsell revenue</li>
+              <li>Improved operational efficiency by <strong>20%</strong> through staff optimization and process redesign</li>
+            </ul>
+            <div class="tl-kpis">
+              <div class="kpi"><span class="kpi-val">40–50</span><span class="kpi-desc">Employees supervised</span></div>
+              <div class="kpi"><span class="kpi-val">2,500</span><span class="kpi-desc">Room operations managed</span></div>
+              <div class="kpi"><span class="kpi-val">+20%</span><span class="kpi-desc">Operational efficiency gain</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rio Hotel Ops -->
+        <div class="timeline-item reveal-up">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-line"></div>
+          </div>
+          <div class="timeline-card">
+            <div class="tl-header">
+              <div class="tl-meta">
+                <span class="tl-date">Jan 2011 – Feb 2012</span>
+              </div>
+              <h3 class="tl-title">Hotel Operations Supervisor</h3>
+              <div class="tl-company">Rio All Suites Hotel &amp; Casino — Caesars Entertainment | Las Vegas, NV</div>
+            </div>
+            <ul class="tl-bullets">
+              <li>Supervised <strong>40–50 employees</strong> across front desk and guest services</li>
+              <li>Oversaw 2,500-room daily operations including room inventory, suite assignments, and upsell revenue</li>
+              <li>Improved operational efficiency by <strong>20%</strong> through staff optimization and process redesign</li>
+            </ul>
+            <div class="tl-kpis">
+              <div class="kpi"><span class="kpi-val">40–50</span><span class="kpi-desc">Employees supervised</span></div>
+              <div class="kpi"><span class="kpi-val">2,500</span><span class="kpi-desc">Room operations managed</span></div>
+              <div class="kpi"><span class="kpi-val">+20%</span><span class="kpi-desc">Operational efficiency gain</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tesla (Inside Sales Advisor) -->
+        <div class="timeline-item reveal-up">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-line"></div>
+          </div>
+          <div class="timeline-card">
+            <div class="tl-header">
+              <div class="tl-meta">
+                <span class="tl-date">Nov 2024 – Sep 2025</span>
+              </div>
+              <h3 class="tl-title">Inside Sales Advisor</h3>
+              <div class="tl-company">Tesla Motors, Inc. | Las Vegas, NV</div>
+            </div>
+            <ul class="tl-bullets">
+              <li>Delivered relationship-first consultative sales experiences from first inquiry through delivery</li>
+              <li>Managed full pipeline in CRM with discipline on follow-up, conversion, and client nurturing</li>
+              <li>Contributed to <strong>top-performing Las Vegas showroom</strong> during record revenue period</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ ACHIEVEMENTS ═══════════════════════════════════ -->
+  <section id="achievements" class="achievements-section">
+    <div class="container">
+      <div class="achievements-inner">
+        <div class="ach-left reveal-left">
+          <div class="section-label">Track Record</div>
+          <h2 class="section-title">Building Value<br/>Through People.</h2>
+          <p class="ach-desc">My greatest accomplishments are not measured by titles. They are measured by relationships built, opportunities created, and results delivered.</p>
+          <blockquote class="ach-quote">
+            "Vision without action is a beautiful deception."
+            <cite>— Paul Andrew Esplana</cite>
+          </blockquote>
+        </div>
+
+        <div class="ach-right reveal-right">
+          <div class="ach-list">
+            <div class="ach-item">
+              <div class="ach-icon">⭐</div>
+              <div class="ach-content">
+                <h4>VIP &amp; Celebrity Experience</h4>
+                <p>Managed premium guest experiences and high-value client relationships at the highest tier of Las Vegas casino hospitality.</p>
+              </div>
+            </div>
+            <div class="ach-item">
+              <div class="ach-icon">🎯</div>
+              <div class="ach-content">
+                <h4>Event Creation &amp; Execution</h4>
+                <p>Developed revenue-driving events including golf tournaments, sports, concerts, and VIP entertainment experiences with measurable P&L outcomes.</p>
+              </div>
+            </div>
+            <div class="ach-item">
+              <div class="ach-icon">💳</div>
+              <div class="ach-content">
+                <h4>Credit &amp; Offer Expertise</h4>
+                <p>Experienced with five-figure to million-dollar patron credit relationships and custom offer design at the most senior levels.</p>
+              </div>
+            </div>
+            <div class="ach-item">
+              <div class="ach-icon">🌐</div>
+              <div class="ach-content">
+                <h4>National Business Network</h4>
+                <p>Trusted by agents, operators, executives, and entrepreneurs across multiple industries — a network built over two decades of genuine relationship work.</p>
+              </div>
+            </div>
+            <div class="ach-item">
+              <div class="ach-icon">🏆</div>
+              <div class="ach-content">
+                <h4>Record Agent Expansion</h4>
+                <p>Onboarded 38 independent agents in under 12 months at M Resort — one of the fastest network expansions in property history.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ EDUCATION ═══════════════════════════════════ -->
+  <section id="education" class="education-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-label">Academic Background</div>
+        <h2 class="section-title">Education</h2>
+      </div>
+      <div class="edu-grid">
+        <div class="edu-card reveal-up" style="--delay:0.05s">
+          <div class="edu-icon">🎓</div>
+          <div class="edu-content">
+            <div class="edu-degree">B.S. Business Administration &amp; Management</div>
+            <div class="edu-school">Aquinas University, Philippines</div>
+            <div class="edu-year">1996</div>
+          </div>
+        </div>
+        <div class="edu-card reveal-up" style="--delay:0.15s">
+          <div class="edu-icon">💻</div>
+          <div class="edu-content">
+            <div class="edu-degree">B.S. Associate Computer Network Engineering</div>
+            <div class="edu-school">Westwood College</div>
+            <div class="edu-year">2000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ CTA ═══════════════════════════════════ -->
+  <section id="cta" class="cta-section">
+    <div class="cta-orb cta-orb-1"></div>
+    <div class="cta-orb cta-orb-2"></div>
+    <div class="container">
+      <div class="cta-inner reveal-up">
+        <div class="section-label">Let's Create Opportunity</div>
+        <h2 class="cta-title">Let's Build Exceptional<br/>Experiences Together.</h2>
+        <p class="cta-desc">Whether you're an independent agent, casino executive, entrepreneur, investor, or strategic partner — I'm always open to meaningful conversations that create value and long-term growth.</p>
+        <a href="#contact" class="btn btn-primary btn-lg">Start a Conversation →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ CONTACT ═══════════════════════════════════ -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-label">Get in Touch</div>
+        <h2 class="section-title">Let's Connect</h2>
+        <p class="section-desc">Ready to create something exceptional together? Reach out through any channel below.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card reveal-up" style="--delay:0.05s">
+          <div class="contact-icon">📍</div>
+          <div class="contact-label">Location</div>
+          <div class="contact-val">Las Vegas, Nevada</div>
+        </div>
+        <div class="contact-card reveal-up" style="--delay:0.10s">
+          <a href="mailto:paulandrew.esplana@gmail.com">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-label">Email</div>
+            <div class="contact-val">paulandrew.esplana@gmail.com</div>
+          </a>
+        </div>
+        <div class="contact-card reveal-up" style="--delay:0.15s">
+          <a href="tel:7026019399">
+            <div class="contact-icon">📞</div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-val">702-601-9399</div>
+          </a>
+        </div>
+        <div class="contact-card reveal-up" style="--delay:0.20s">
+          <a href="https://linkedin.com/in/paulandrewesplana" target="_blank" rel="noopener">
+            <div class="contact-icon">💼</div>
+            <div class="contact-label">LinkedIn</div>
+            <div class="contact-val">linkedin.com/in/paulandrewesplana</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ FOOTER ═══════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="logo-initials">PAE</span>
+          <div class="footer-brand-text">
+            <div class="footer-name">Paul Andrew Esplana</div>
+            <div class="footer-role">National Casino Marketing Manager</div>
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#expertise">Expertise</a>
+          <a href="#experience">Experience</a>
+          <a href="#achievements">Achievements</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-copy">
+          © 2026 Paul Andrew Esplana. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
