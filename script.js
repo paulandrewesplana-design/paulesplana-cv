@@ -43,6 +43,11 @@
       setTimeout(() => {
         gate.style.display = 'none';
         gate.remove();
+        // Re-evaluate scroll position so nav highlights the correct section
+        window.scrollTo(0, 0);
+        window.dispatchEvent(new Event('scroll'));
+        // Re-trigger IntersectionObserver by briefly disconnecting & reconnecting
+        document.dispatchEvent(new CustomEvent('gateRemoved'));
       }, 1700);
     } else {
       // ❌ Wrong — shake input, show error
