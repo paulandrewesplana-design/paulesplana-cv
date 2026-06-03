@@ -1640,7 +1640,7 @@ ul { list-style: none; }
 
   /* Hero — stays full-viewport, photo fills entire screen */
   .hero { height: 100vh; align-items: flex-end; }
-  .hero-photo { object-position: 65% 15%; } /* Show more of face on smaller screens */
+  .hero-photo { object-position: 65% 30%; } /* Show face on smaller screens */
   .hero-cinematic-content { padding: 0 3vw 4rem; }
   .hero-headline { font-size: clamp(3rem, 7vw, 6rem); }
 
@@ -1675,7 +1675,7 @@ ul { list-style: none; }
     height: 100dvh;       /* dynamic viewport — excludes browser chrome */
     align-items: flex-end;
   }
-  .hero-photo { object-position: center 10%; } /* Center subject on portrait */
+  .hero-photo { object-position: center 30%; } /* Center face on portrait mobile */
   .hero-cinematic-content { padding: 0 1.25rem 3.5rem; }
   .hero-headline { font-size: clamp(2.6rem, 10vw, 4rem); }
   .hero-sub { font-size: 0.9rem; }
@@ -1747,7 +1747,7 @@ ul { list-style: none; }
 
   /* Hero — full viewport on small phones */
   .hero { height: 100vh; align-items: flex-end; }
-  .hero-photo { object-position: 75% 10%; }
+  .hero-photo { object-position: center 30%; }
   .hero-cinematic-content { padding: 0 1rem 3rem; }
   .hero-headline { font-size: clamp(2.2rem, 11vw, 3.2rem); }
   .hero-eyebrow { margin-bottom: 1rem; }

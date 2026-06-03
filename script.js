@@ -86,76 +86,53 @@ window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
 
-/* ── HAMBURGER MENU — debounced, touch-safe ── */
+/* ── HAMBURGER MENU — clean, reliable ── */
 const hamburger = document.getElementById('hamburger');
 const mobileOverlay = document.getElementById('mobile-overlay');
 const mobileClose = document.getElementById('mobile-close');
-let menuAnimating = false;
-let savedScrollY = 0;
+let menuOpen = false;
 
 function openMenu() {
-  if (menuAnimating) return;
-  menuAnimating = true;
-  // iOS Safari scroll lock: save position and fix body
-  savedScrollY = window.scrollY;
-  document.body.style.position = 'fixed';
-  document.body.style.top = `-${savedScrollY}px`;
-  document.body.style.width = '100%';
+  menuOpen = true;
   mobileOverlay.classList.add('open');
   hamburger.classList.add('active');
   hamburger.setAttribute('aria-expanded', 'true');
-  setTimeout(() => { menuAnimating = false; }, 400);
+  document.body.style.overflow = 'hidden';
 }
 
 function closeMenu() {
-  if (menuAnimating) return;
-  menuAnimating = true;
-  // iOS Safari scroll restore
-  document.body.style.position = '';
-  document.body.style.top = '';
-  document.body.style.width = '';
-  window.scrollTo(0, savedScrollY);
+  menuOpen = false;
   mobileOverlay.classList.remove('open');
   hamburger.classList.remove('active');
   hamburger.setAttribute('aria-expanded', 'false');
-  setTimeout(() => { menuAnimating = false; }, 400);
+  document.body.style.overflow = '';
 }
 
-// Use touchend for instant response on mobile, fall back to click
-function onHamburgerTap(e) {
-  e.preventDefault();
-  e.stopPropagation();
-  mobileOverlay.classList.contains('open') ? closeMenu() : openMenu();
-}
-hamburger.addEventListener('touchend', onHamburgerTap, { passive: false });
-hamburger.addEventListener('click', (e) => {
-  // Only fire click if touchend didn't already handle it
-  if (!e._touchHandled) onHamburgerTap(e);
+// Single click handler — touch-action:manipulation already removes 300ms delay
+hamburger.addEventListener('click', () => {
+  menuOpen ? closeMenu() : openMenu();
 });
 
 // Close button
 if (mobileClose) {
-  mobileClose.addEventListener('touchend', (e) => { e.preventDefault(); closeMenu(); }, { passive: false });
   mobileClose.addEventListener('click', closeMenu);
 }
 
-// Close when nav link tapped
+// Close when a nav link is tapped
 mobileOverlay.querySelectorAll('.mobile-nav-link').forEach(link => {
-  link.addEventListener('touchend', (e) => { closeMenu(); }, { passive: true });
-  link.addEventListener('click', closeMenu);
+  link.addEventListener('click', () => {
+    closeMenu();
+  });
 });
 
-// Close on backdrop tap
-mobileOverlay.addEventListener('touchend', (e) => {
-  if (e.target === mobileOverlay) { e.preventDefault(); closeMenu(); }
-}, { passive: false });
+// Close on backdrop tap (tapping outside the panel)
 mobileOverlay.addEventListener('click', (e) => {
   if (e.target === mobileOverlay) closeMenu();
 });
 
 // Close on Escape key
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeMenu();
+  if (e.key === 'Escape' && menuOpen) closeMenu();
 });
 
 /* ── SMOOTH ACTIVE NAV LINK ── */
