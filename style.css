@@ -582,9 +582,9 @@ ul { list-style: none; }
   border: none;
   cursor: pointer;
   padding: 6px 4px;
-  z-index: 1001;
-  touch-action: manipulation;      /* eliminates 300ms tap delay */
-  -webkit-tap-highlight-color: transparent; /* no grey flash on tap */
+  z-index: 10001; /* Above overlay backdrop */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   user-select: none;
 }
 .hamburger span {
@@ -606,8 +606,8 @@ ul { list-style: none; }
   pointer-events: none;
   position: fixed;
   inset: 0;
-  z-index: 1000;
-  background: rgba(0,0,0,0.65);
+  z-index: 10000; /* Must be above navbar (999) and hamburger */
+  background: rgba(0,0,0,0.75);
   opacity: 0;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
