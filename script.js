@@ -118,10 +118,25 @@ if (mobileClose) {
   mobileClose.addEventListener('click', closeMenu);
 }
 
-// Close when a nav link is tapped
+// Close when a nav link is tapped — scroll AFTER menu closes
 mobileOverlay.querySelectorAll('.mobile-nav-link').forEach(link => {
-  link.addEventListener('click', () => {
-    closeMenu();
+  link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      e.preventDefault(); // Stop instant anchor jump
+      closeMenu();
+      // Wait for menu slide-out to finish, then scroll
+      setTimeout(() => {
+        const target = document.querySelector(href);
+        if (target) {
+          const navHeight = document.getElementById('navbar').offsetHeight;
+          const top = target.getBoundingClientRect().top + window.scrollY - navHeight;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      }, 350);
+    } else {
+      closeMenu();
+    }
   });
 });
 
