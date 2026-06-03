@@ -132,6 +132,7 @@ body.gate-open { overflow: hidden; }
   transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1);
   background: rgba(5,5,7,0.96);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px); /* iOS Safari */
 }
 .gate-phase-auth.fade-in {
   opacity: 1;
@@ -238,13 +239,15 @@ body.gate-open { overflow: hidden; }
   border: 1px solid rgba(201,168,76,0.2);
   border-radius: 3px;
   padding: 0.95rem 1.2rem;
-  font-size: 1.1rem;
+  font-size: 1rem; /* 16px min prevents iOS zoom-in on focus */
   letter-spacing: 0.3em;
   color: #fff;
   outline: none;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   font-family: 'Inter', sans-serif;
-  -webkit-text-security: disc;
+  box-sizing: border-box;
+  -webkit-appearance: none; /* Remove iOS default styling */
+  appearance: none;
 }
 .auth-input:focus {
   border-color: rgba(201,168,76,0.6);
@@ -328,10 +331,17 @@ body.gate-open { overflow: hidden; }
 
 /* ── MOBILE RESPONSIVE ── */
 @media (max-width: 480px) {
-  .auth-box { padding: 1.8rem 1.4rem; }
+  .entry-gate { align-items: center; justify-content: center; }
+  .gate-phase-auth { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  .auth-box {
+    padding: 1.8rem 1.4rem;
+    max-height: 95vh;
+    overflow-y: auto;
+  }
   .auth-logo-initials { width: 46px; height: 46px; font-size: 0.95rem; }
   .auth-orb { width: 300px; height: 300px; }
   .gate-brand-mark { bottom: 8%; }
+  .gate-photo { animation: gateZoomIn 8s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
 }
 
 /* ═══════════════════════════════════════════════════════════ */
