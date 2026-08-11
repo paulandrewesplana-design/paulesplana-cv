@@ -1,0 +1,76 @@
+rules_version = '2';
+
+// CareLink Firestore Security Rules
+// Role-Based Access Control via Firebase Auth custom claims:
+//   request.auth.token.role ∈ { "facility", "driver", "ceo" }
+//   request.auth.token.facilityId / driverId scope a user to their own records.
+//
+// These rules are the real PHI boundary — the public web keys are not secrets.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    function role() {
+      return request.auth.token.role;
+    }
+    function isCeo() {
+      return isSignedIn() && role() == "ceo";
+    }
+    function isFacility() {
+      return isSignedIn() && role() == "facility";
+    }
+    function isDriver() {
+      return isSignedIn() && role() == "driver";
+    }
+
+    // Facilities: readable by signed-in users (needed for proximity + display);
+    // a facility's static address is written only by admins/CEO.
+    match /facilities/{facilityId} {
+      allow read: if isSignedIn();
+      allow write: if isCeo();
+    }
+
+    // Drivers: fleet visible to CEO; facilities may read the available pool for
+    // dispatch; a driver may update only their own status/location doc.
+    match /drivers/{driverId} {
+      allow read: if isSignedIn();
+      allow update: if isDriver()
+        && request.auth.token.driverId == driverId
+        // A driver cannot self-inflate their rating average.
+        && request.resource.data.ratingAverage == resource.data.ratingAverage;
+      allow create, delete: if isCeo();
+    }
+
+    // Trip requests carry PHI (patientName, patientDOB).
+    // - Facilities read/write only their own facility's trips.
+    // - A driver reads/updates only trips assigned to them.
+    // - CEO has read access for analytics.
+    match /trip_requests/{tripId} {
+      allow create: if isFacility()
+        && request.resource.data.facilityId == request.auth.token.facilityId;
+      allow read: if isCeo()
+        || (isFacility() && resource.data.facilityId == request.auth.token.facilityId)
+        || (isDriver() && resource.data.driverId == request.auth.token.driverId);
+      allow update: if
+        (isFacility() && resource.data.facilityId == request.auth.token.facilityId)
+        || (isDriver() && resource.data.driverId == request.auth.token.driverId);
+      allow delete: if false; // trips are canceled via status, never deleted
+    }
+
+    // Ratings: created by the facility that took the trip; read by CEO and the
+    // rated driver. Immutable once written.
+    match /driver_ratings/{ratingId} {
+      allow create: if isFacility()
+        && request.resource.data.facilityId == request.auth.token.facilityId
+        && request.resource.data.rating >= 1
+        && request.resource.data.rating <= 5;
+      allow read: if isCeo()
+        || (isDriver() && resource.data.driverId == request.auth.token.driverId)
+        || (isFacility() && resource.data.facilityId == request.auth.token.facilityId);
+      allow update, delete: if false;
+    }
+  }
+}
