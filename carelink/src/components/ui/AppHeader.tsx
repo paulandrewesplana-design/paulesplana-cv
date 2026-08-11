@@ -1,8 +1,20 @@
+"use client";
+
 import Link from "next/link";
-import { Ambulance } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Ambulance, LogOut } from "lucide-react";
 import { isFirebaseConfigured } from "@/lib/firebase";
+import { useAuth } from "@/lib/auth/AuthProvider";
 
 export function AppHeader({ role }: { role: "Facility" | "CEO / Fleet Admin" }) {
+  const { user, signOut } = useAuth();
+  const router = useRouter();
+
+  const onSignOut = async (): Promise<void> => {
+    await signOut();
+    router.replace("/login");
+  };
+
   return (
     <header className="border-b border-slate-200 bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
@@ -16,7 +28,24 @@ export function AppHeader({ role }: { role: "Facility" | "CEO / Fleet Admin" }) 
               Demo data
             </span>
           ) : null}
-          <span className="text-sm font-medium text-slate-600">{role}</span>
+          <span className="hidden text-sm font-medium text-slate-600 sm:inline">
+            {role}
+          </span>
+          {user ? (
+            <>
+              {user.email ? (
+                <span className="hidden text-xs text-slate-400 md:inline">
+                  {user.email}
+                </span>
+              ) : null}
+              <button
+                onClick={onSignOut}
+                className="flex items-center gap-1.5 rounded-lg border border-slate-200 px-2.5 py-1.5 text-xs font-medium text-slate-600 transition hover:bg-slate-50"
+              >
+                <LogOut className="h-3.5 w-3.5" /> Sign out
+              </button>
+            </>
+          ) : null}
         </div>
       </div>
     </header>

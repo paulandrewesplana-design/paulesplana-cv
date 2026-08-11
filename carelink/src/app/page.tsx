@@ -17,6 +17,15 @@ export default function HomePage() {
         ambulance providers. Choose a workspace to open its dashboard.
       </p>
 
+      <div className="mt-5">
+        <Link
+          href="/login"
+          className="inline-flex items-center rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark"
+        >
+          Sign in →
+        </Link>
+      </div>
+
       {!isFirebaseConfigured ? (
         <div className="mt-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
           Running in <strong>demo mode</strong> with seeded data — no Firebase

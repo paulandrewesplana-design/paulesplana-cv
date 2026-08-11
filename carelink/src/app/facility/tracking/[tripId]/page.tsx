@@ -1,3 +1,4 @@
+import { RequireRole } from "@/components/auth/RequireRole";
 import { TrackingMap } from "@/components/facility/TrackingMap";
 
 /**
@@ -5,5 +6,9 @@ import { TrackingMap } from "@/components/facility/TrackingMap";
  * to keep PHI out of URLs / logs / referrers (see HIPAA rules).
  */
 export default function TrackingPage({ params }: { params: { tripId: string } }) {
-  return <TrackingMap tripId={params.tripId} />;
+  return (
+    <RequireRole role="facility">
+      <TrackingMap tripId={params.tripId} />
+    </RequireRole>
+  );
 }

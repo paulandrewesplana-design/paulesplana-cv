@@ -39,6 +39,38 @@ npm run build      # production build
 - **Request-volume chart** (Recharts), **driver ratings** with computed averages,
   **fleet leaderboard**, and a **dispatch density heatmap**.
 
+## Authentication & roles
+
+Sign-in is at **`/login`**. All workspaces are guarded by role:
+
+- `/facility` and `/facility/tracking/[tripId]` require the `facility` role.
+- `/ceo` requires the `ceo` role.
+
+**Live mode (Firebase configured):** email/password sign-in via Firebase Auth.
+A user's role comes from **custom claims** (`role`, plus `facilityId` /
+`driverId` scoping), which are set server-side with the Admin SDK — never from
+the client. Facility staff are resolved to their own locked facility via the
+`facilityId` claim; they can never book for another facility.
+
+Assign roles with the helper script:
+
+```bash
+npm i -D firebase-admin
+export GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json
+
+node scripts/set-claims.mjs staff@riverside.org facility --facilityId fac_riverside
+node scripts/set-claims.mjs ops@fleet.com       ceo
+node scripts/set-claims.mjs driver@fleet.com    driver   --driverId drv_martinez
+```
+
+The client-side guard (`RequireRole`) is a UX gate only. The real access
+boundary is **`firestore.rules`**, which authorizes every read/write against the
+same claims.
+
+**Demo mode (no Firebase):** `/login` offers "Continue as Facility / CEO"
+buttons that assume a role locally (persisted in `localStorage`) so the full
+app is testable without a backend.
+
 ## Architecture notes
 
 | Concern | Where |
@@ -47,6 +79,8 @@ npm run build      # production build
 | Live/mock branching | `src/lib/firebase.ts` + `src/lib/data/*` |
 | Dispatch spatial query | `findAvailableDrivers()` — `where("status","==","available")` |
 | Analytics aggregation (pure, testable) | `src/lib/analytics.ts` |
+| Auth + role claims (live & demo) | `src/lib/auth/*`, `src/app/login` |
+| Route guards | `src/components/auth/RequireRole.tsx` |
 | RBAC + PHI protection | `firestore.rules` |
 
 ## HIPAA / PHI handling
